@@ -1,0 +1,65 @@
+
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String?
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  isPaid       Boolean  @default(false)
+  uploads      Upload[]
+  invites      InviteCode[] @relation("Invitee")
+}
+
+model Upload {
+  id        String   @id @default(cuid())
+  ownerId   String
+  owner     User     @relation(fields: [ownerId], references: [id])
+  name      String
+  tags      String[]
+  fileUrl   String
+  thumbUrl  String?
+  mimeType  String
+  sizeBytes Int
+  legalAck  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  @@index([ownerId])
+  @@index([createdAt])
+  @@index([name])
+}
+
+model InviteCode {
+  id          String   @id @default(cuid())
+  email       String
+  code        String   @unique
+  consumed    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  consumedAt  DateTime?
+  createdById String?
+  createdBy   User?    @relation(fields: [createdById], references: [id])
+  invitee     User?    @relation("Invitee", fields: [inviteeId], references: [id])
+  inviteeId   String?
+}
+
+model VippsPayment {
+  id        String   @id @default(cuid())
+  orderId   String   @unique
+  userEmail String
+  status    String
+  amountNOK Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PasswordReset {
+  id        String   @id @default(cuid())
+  email     String
+  code      String   @unique
+  createdAt DateTime @default(now())
+  used      Boolean  @default(false)
+}
+
+enum Role { USER ADMIN }

@@ -1,0 +1,27 @@
+
+@tailwind base; @tailwind components; @tailwind utilities;
+
+:root{
+  --brand:#2A2E45;
+  --accent:#9ADBE8;
+  --surface:#F7FAFC;
+  --ink:#1A202C;
+  --muted:#E2E8F0;
+}
+.bg-surface{ background: var(--surface) }
+.text-ink{ color: var(--ink) }
+.bg-muted{ background: var(--muted) }
+
+.input{ @apply border rounded-md px-3 py-2 w-full; }
+.file-input{ @apply block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-[color:var(--accent)] file:text-[color:var(--brand)] hover:file:opacity-90; }
+.btn{ @apply inline-flex items-center justify-center px-4 py-2 rounded-md bg-[color:var(--brand)] text-white; }
+.btn-secondary{ @apply inline-flex items-center px-3 py-1.5 rounded-md border; }
+.btn-danger{ @apply inline-flex items-center px-3 py-1.5 rounded-md bg-red-600 text-white; }
+.link{ @apply underline; }
+.auth-shell{ @apply min-h-[80vh] grid place-items-center bg-surface; }
+.auth-card{ @apply w-full max-w-md bg-white p-8 rounded-xl shadow; }
+.auth-title{ @apply text-xl font-semibold mb-2; }
+.tabs{ @apply flex gap-2 mb-4; }
+.tab{ @apply px-3 py-1.5 rounded-md border; }
+.tab.active{ @apply bg-[color:var(--accent)] border-transparent; }
+.container{ @apply max-w-6xl mx-auto px-4; }

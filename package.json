@@ -1,0 +1,34 @@
+
+{
+  "name": "cephalo-sketchdrop",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "postinstall": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "ts-node prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "latest",
+    "@supabase/supabase-js": "latest",
+    "argon2": "latest",
+    "jsonwebtoken": "latest",
+    "next": "14.2.3",
+    "nodemailer": "latest",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sharp": "latest"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "latest",
+    "autoprefixer": "latest",
+    "postcss": "latest",
+    "prisma": "latest",
+    "tailwindcss": "latest",
+    "ts-node": "latest",
+    "typescript": "latest"
+  }
+}
